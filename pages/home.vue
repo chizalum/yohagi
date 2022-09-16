@@ -7,7 +7,7 @@
       <div class="second-col">
         <img src="yohagi.png" class="yohagi" alt="yohagi-symbol" />
         <div class="second-row">
-          <p class="iyana-txt">Iyana Ipaja Market</p>
+          <p class="iyana-txt">Iyana Ipajaa Market</p>
           <p class="switch-txt">switch</p>
         </div>
       </div>
