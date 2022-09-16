@@ -7,7 +7,7 @@
       <div class="second-col">
         <img src="yohagi.png" class="yohagi" alt="yohagi-symbol" />
         <div class="second-row">
-          <p class="iyana-txt">Iyana Ipajaa Market</p>
+          <p class="iyana-txt">Iyana Ipaja Market</p>
           <p class="switch-txt">switch</p>
         </div>
       </div>
@@ -302,6 +302,30 @@ export default {
         this.packageDetails[index].starCurrent3 = 0;
         this.packageDetails[index].starCurrent4 = 0;
         this.packageDetails[index].starCurrent5 = 0;
+      } else if (this.packageDetails[index].starCurrent5 > 0) {
+        this.packageDetails[index].starCurrent1 = 1;
+        this.packageDetails[index].starCurrent2 = 0;
+        this.packageDetails[index].starCurrent3 = 0;
+        this.packageDetails[index].starCurrent4 = 0;
+        this.packageDetails[index].starCurrent5 = 0;
+      } else if (this.packageDetails[index].starCurrent4 > 0) {
+        this.packageDetails[index].starCurrent1 = 1;
+        this.packageDetails[index].starCurrent2 = 0;
+        this.packageDetails[index].starCurrent3 = 0;
+        this.packageDetails[index].starCurrent4 = 0;
+        this.packageDetails[index].starCurrent5 = 0;
+      } else if (this.packageDetails[index].starCurrent3 > 0) {
+        this.packageDetails[index].starCurrent1 = 1;
+        this.packageDetails[index].starCurrent2 = 0;
+        this.packageDetails[index].starCurrent3 = 0;
+        this.packageDetails[index].starCurrent4 = 0;
+        this.packageDetails[index].starCurrent5 = 0;
+      } else if (this.packageDetails[index].starCurrent2 > 0) {
+        this.packageDetails[index].starCurrent1 = 1;
+        this.packageDetails[index].starCurrent2 = 0;
+        this.packageDetails[index].starCurrent3 = 0;
+        this.packageDetails[index].starCurrent4 = 0;
+        this.packageDetails[index].starCurrent5 = 0;
       } else {
         this.packageDetails[index].starCurrent1 = 0;
       }
@@ -309,6 +333,24 @@ export default {
 
     changeStar2(index) {
       if (this.packageDetails[index].starCurrent2 < 1) {
+        this.packageDetails[index].starCurrent1 = 1;
+        this.packageDetails[index].starCurrent2 = 1;
+        this.packageDetails[index].starCurrent3 = 0;
+        this.packageDetails[index].starCurrent4 = 0;
+        this.packageDetails[index].starCurrent5 = 0;
+      } else if (this.packageDetails[index].starCurrent5 > 0) {
+        this.packageDetails[index].starCurrent1 = 1;
+        this.packageDetails[index].starCurrent2 = 1;
+        this.packageDetails[index].starCurrent3 = 0;
+        this.packageDetails[index].starCurrent4 = 0;
+        this.packageDetails[index].starCurrent5 = 0;
+      } else if (this.packageDetails[index].starCurrent4 > 0) {
+        this.packageDetails[index].starCurrent1 = 1;
+        this.packageDetails[index].starCurrent2 = 1;
+        this.packageDetails[index].starCurrent3 = 0;
+        this.packageDetails[index].starCurrent4 = 0;
+        this.packageDetails[index].starCurrent5 = 0;
+      } else if (this.packageDetails[index].starCurrent3 > 0) {
         this.packageDetails[index].starCurrent1 = 1;
         this.packageDetails[index].starCurrent2 = 1;
         this.packageDetails[index].starCurrent3 = 0;
@@ -327,6 +369,18 @@ export default {
         this.packageDetails[index].starCurrent3 = 1;
         this.packageDetails[index].starCurrent4 = 0;
         this.packageDetails[index].starCurrent5 = 0;
+      } else if (this.packageDetails[index].starCurrent5 > 0) {
+        this.packageDetails[index].starCurrent1 = 1;
+        this.packageDetails[index].starCurrent2 = 1;
+        this.packageDetails[index].starCurrent3 = 1;
+        this.packageDetails[index].starCurrent4 = 0;
+        this.packageDetails[index].starCurrent5 = 0;
+      } else if (this.packageDetails[index].starCurrent4 > 0) {
+        this.packageDetails[index].starCurrent1 = 1;
+        this.packageDetails[index].starCurrent2 = 1;
+        this.packageDetails[index].starCurrent3 = 1;
+        this.packageDetails[index].starCurrent4 = 0;
+        this.packageDetails[index].starCurrent5 = 0;
       } else {
         this.packageDetails[index].starCurrent1 = 0;
         this.packageDetails[index].starCurrent2 = 0;
@@ -336,6 +390,12 @@ export default {
 
     changeStar4(index) {
       if (this.packageDetails[index].starCurrent4 < 1) {
+        this.packageDetails[index].starCurrent1 = 1;
+        this.packageDetails[index].starCurrent2 = 1;
+        this.packageDetails[index].starCurrent3 = 1;
+        this.packageDetails[index].starCurrent4 = 1;
+        this.packageDetails[index].starCurrent5 = 0;
+      } else if (this.packageDetails[index].starCurrent5 > 0) {
         this.packageDetails[index].starCurrent1 = 1;
         this.packageDetails[index].starCurrent2 = 1;
         this.packageDetails[index].starCurrent3 = 1;
