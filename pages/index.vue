@@ -19,7 +19,7 @@ export default {
 .full-screen {
   background: url("~assets/white-background.png");
   width: 100%;
-  max-width: 768px;
+  max-width: 540px;
   min-height: 700px;
   height: 100vh;
   margin: 0 auto 0 auto;
