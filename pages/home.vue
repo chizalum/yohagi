@@ -52,7 +52,7 @@
       <div class="grid-container">
         <div
           class="grid-item"
-          v-for="(details, index) in packageDetails"
+          v-for="(details, index) in itemsLessThanTen"
           :key="index"
         >
           <img :src="details.img" alt="product-image" class="product-image" />
@@ -98,6 +98,40 @@
           </div>
         </div>
       </div>
+      <p class="see-txt">See More</p>
+    </div>
+    <div class="fifth-div">
+      <div class="sixth-div">
+        <p class="hot-txt">Hot Sale</p>
+        <div class="seventh-div">
+          <p class="off-txt">16% Off</p>
+          <p class="off-txt">25% Off</p>
+          <p class="off-txt">33% Off</p>
+        </div>
+      </div>
+      <div class="eight-div">
+        <p class="basic-txt">Basic Gift Idea</p>
+        <p class="mini-txt">
+          Mini Two Wheel<br /><span class="span">Self Balancing Scooter</span>
+        </p>
+        <button class="btn-3">Go Shop</button>
+      </div>
+      <div class="ninth-div">
+        <div class="deals" v-for="(deals, index) in dealings"
+          :key="index">
+          <div class="circle-div">
+            <p class="offer-txt">{{deals.offer}}</p>
+            <p class="span1">offer</p>
+          </div>
+          <img :src="deals.img" alt="product-image" class="laptop-img" />
+          <p class="intel">{{deals.name}}</p>
+          <div class="row-div">
+            <p class="first-price">{{deals.former}}</p>
+            <p class="second-price">{{deals.current}}</p>
+          </div>
+          <p class="just-txt">Just {{deals.left}} left</p>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -107,8 +141,37 @@ export default {
   name: "home",
   layout: "default",
 
+  computed: {
+    itemsLessThanTen: function () {
+      return this.packageDetails.filter(function (details) {
+        return details.index <= 4;
+      });
+    },
+  },
+
   data() {
     return {
+      number: 3,
+      dealings: [
+        {
+          index: 1,
+          name: "Intel Laptop",
+          former: "N520.00",
+          current: "N499.00",
+          left: "2",
+          offer: "16",
+          img: "laptop.png"
+        },
+        {
+          index: 2,
+          name: "Luxury Watches",
+          former: "N520.00",
+          current: "N540.00",
+          left: "2",
+          offer: "16",
+          img: "new-watch.png"
+        },
+      ],
       packageDetails: [
         {
           index: 1,
@@ -424,7 +487,7 @@ export default {
         this.packageDetails[index].starCurrent1 = 0;
       }
     },
-  }
+  },
 };
 </script>
   
@@ -727,7 +790,7 @@ export default {
   grid-template-columns: repeat(auto-fill, 211px);
   background-color: #ffffff;
   width: 100%;
-  justify-content: space-evenly;
+  justify-content: space-between;
   row-gap: 11px;
   margin: 15px 0 0 0;
 }
@@ -740,6 +803,7 @@ export default {
   width: 211px;
   display: flex;
   flex-direction: row;
+  margin: 0 0 0 0;
 }
 
 .product-image {
@@ -811,5 +875,224 @@ export default {
   height: 16px;
   align-self: flex-end;
   margin: 7.8px 8.3px 0 0;
+}
+
+.see-txt {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  text-decoration-line: underline;
+  color: #06d6a0;
+  margin: 20px auto 28px auto;
+}
+
+.fifth-div {
+  width: 100%;
+  background: #f4f6fa;
+  margin: 0 0 0 0;
+  padding: 0 16px 37px 16px;
+}
+
+.sixth-div {
+  margin: 0 0 0 0;
+  padding-top: 25px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.hot-txt {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #000000;
+}
+
+.off-txt {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  color: #a6a8ad;
+}
+
+.seventh-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  min-width: 218px;
+  width: 64%;
+  margin: 0 0 0 0;
+}
+
+.eight-div {
+  width: 343px;
+  height: 166px;
+  background: url("~assets/gift-idea.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin: 22px auto 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.basic-txt {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 17px;
+  color: #001838;
+  margin: 29px 0 0 24px;
+}
+
+.mini-txt {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 17px;
+  color: #000000;
+  margin: 11px 0 0 24px;
+}
+
+.span {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #000000;
+}
+
+.btn-3 {
+  box-sizing: border-box;
+  width: 100px;
+  height: 37px;
+  background: #06d6a0;
+  border: none;
+  border-radius: 3px;
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 12px;
+  text-align: center;
+  color: #ffffff;
+  margin: 13px 0 0 24px;
+}
+
+.ninth-div {
+  margin: 21px 0 0 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.deals {
+  width: 171px;
+  height: 251px;
+  background: #ffffff;
+  text-align: center;
+  margin: 0 1px 0 0;
+}
+
+.laptop-img {
+  margin: -20px auto 0 auto;
+  display: block;
+}
+
+.circle-div {
+  background: #69b121;
+  border-radius: 50%;
+  width: 41px;
+  height: 41px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  top: 9px;
+  left: 122px;
+  margin: 0 0 0 0;
+  z-index: 999;
+}
+
+.offer-txt {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 12px;
+  color: #ffffff;
+  text-align: center;
+  margin: 0 auto 0 auto;
+}
+
+.span1 {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 10px;
+  line-height: 12px;
+  color: #ffffff;
+  text-align: center;
+  margin: 0 auto 0 auto;
+}
+
+.intel {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #000000;
+  margin: 13px auto 0 auto;
+}
+
+.row-div {
+  display: flex;
+  flex-direction: row;
+  margin: 9px auto 0 auto;
+  justify-content: center;
+  width: 100%;
+}
+
+.first-price {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 17px;
+  text-decoration-line: line-through;
+  color: #c4c4c4;
+  margin: 0 6px 0 0;
+}
+
+.second-price {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 17px;
+  color: #14cb73;
+  margin: 0 0 0 0;
+}
+
+.just-txt {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #bc1414;
+  margin: 11px auto 0 auto;
 }
 </style>
