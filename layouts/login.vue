@@ -1,6 +1,5 @@
 <template>
   <div class="fullwidth">
-    <loginPage class="headerpage" />
     <Nuxt />
   </div>
 </template>

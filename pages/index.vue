@@ -8,7 +8,6 @@
 <script>
 export default {
   name: "IndexPage",
-  layout: "login",
   created() {
     setTimeout(() => this.$router.push({ path: "/home" }), 4000);
   },
@@ -18,12 +17,12 @@ export default {
 <style scoped>
 .full-screen {
   background: url("~assets/white-background.png");
-  width: 100%;
+  width: auto;
   max-width: 540px;
-  min-height: 700px;
   height: 100vh;
   margin: 0 auto 0 auto;
 }
+
 
 .yohagi {
   margin: auto auto auto auto;

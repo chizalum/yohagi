@@ -1,135 +1,140 @@
 <template>
   <div class="full-screen">
-    <div class="first-row">
-      <div class="first-col">
-        <img src="menu.svg" class="menu" alt="menu" />
-      </div>
-      <div class="second-col">
-        <img src="yohagi.png" class="yohagi" alt="yohagi-symbol" />
-        <div class="second-row">
-          <p class="iyana-txt">Iyana Ipaja Market</p>
-          <p class="switch-txt">switch8</p>
+    <div class="max-div">
+      <div class="first-row">
+        <div class="first-col">
+          <img src="menu.svg" class="menu" alt="menu" />
         </div>
-      </div>
-      <div class="third-col">
-        <img src="shopping-bag.svg" class="shopping-bag" alt="shopping-bag" />
-      </div>
-    </div>
-    <div class="third-row">
-      <div class="fourth-row">
-        <input type="text" class="search-bar" placeholder="Find Your Product" />
-        <div class="green-box">
-          <img src="sliders.svg" class="sliders" alt="sliders" />
-        </div>
-      </div>
-      <div class="fifth-row">
-        <p class="get-txt">Get 50% Off</p>
-        <p class="shop-txt">SHOP WISE WITH PRICE COMPARISONS</p>
-        <div class="sixth-row">
-          <div class="view-box">
-            <p class="view-txt">VIEW COLLECTION</p>
-          </div>
-          <div class="category-box">
-            <p class="category-txt">CATEGORIES</p>
+        <div class="second-col">
+          <img src="yohagi.png" class="yohagi" alt="yohagi-symbol" />
+          <div class="second-row">
+            <p class="iyana-txt">Iyana Ipaja Market</p>
+            <p class="switch-txt">switch</p>
           </div>
         </div>
+        <div class="third-col">
+          <img src="shopping-bag.svg" class="shopping-bag" alt="shopping-bag" />
+        </div>
       </div>
-      <div class="seventh-row">
-        <img src="watch.png" class="watch" alt="watch-img" />
-        <img src="sweater.png" class="sweater" alt="sweater-img" />
-      </div>
-      <div class="top-div">
-        <p class="top-txt">Top Categories This Week</p>
-      </div>
-      <div class="first-div">
-        <p class="mobile">Mobile</p>
-        <p class="headphone">Headphone</p>
-        <p class="camera">Camera</p>
-        <p class="drone">Drone</p>
-        <p class="speaker">Speaker</p>
-      </div>
-      <hr class="horizontal-rule" />
-      <div class="grid-container">
-        <div
-          class="grid-item"
-          v-for="(details, index) in itemsLessThanTen"
-          :key="index"
-        >
-          <img :src="details.img" alt="product-image" class="product-image" />
-          <div class="second-div">
-            <img :src="details.heart" alt="heart" class="heart" />
-            <div class="third-div">
-              <img
-                :src="details.star1[details.starCurrent1]"
-                alt="star"
-                class="star"
-                @click="changeStar1(index)"
-              />
-              <img
-                :src="details.star2[details.starCurrent2]"
-                alt="star"
-                class="star"
-                @click="changeStar2(index)"
-              />
-              <img
-                :src="details.star3[details.starCurrent3]"
-                alt="star"
-                class="star"
-                @click="changeStar3(index)"
-              />
-              <img
-                :src="details.star4[details.starCurrent4]"
-                alt="star"
-                class="star"
-                @click="changeStar4(index)"
-              />
-              <img
-                :src="details.star5[details.starCurrent5]"
-                alt="star"
-                class="star"
-                @click="changeStar5(index)"
-              />
+      <div class="third-row">
+        <div class="fourth-row">
+          <input
+            type="text"
+            class="search-bar"
+            placeholder="Find Your Product"
+          />
+          <div class="green-box">
+            <img src="sliders.svg" class="sliders" alt="sliders" />
+          </div>
+        </div>
+        <div class="fifth-row">
+          <p class="get-txt">Get 50% Off</p>
+          <p class="shop-txt">SHOP WISE WITH PRICE COMPARISONS</p>
+          <div class="sixth-row">
+            <div class="view-box">
+              <p class="view-txt">VIEW COLLECTION</p>
             </div>
-            <p class="product-name">{{ details.name }}</p>
-            <div class="fourth-div">
-              <p class="previous">{{ details.previous }}</p>
-              <p class="price-txt">{{ details.price }}</p>
+            <div class="category-box">
+              <p class="category-txt">CATEGORIES</p>
             </div>
           </div>
         </div>
-      </div>
-      <p class="see-txt">See More</p>
-    </div>
-    <div class="fifth-div">
-      <div class="sixth-div">
-        <p class="hot-txt">Hot Sale</p>
-        <div class="seventh-div">
-          <p class="off-txt">16% Off</p>
-          <p class="off-txt">25% Off</p>
-          <p class="off-txt">33% Off</p>
+        <div class="seventh-row">
+          <img src="watch.png" class="watch" alt="watch-img" />
+          <img src="sweater.png" class="sweater" alt="sweater-img" />
         </div>
-      </div>
-      <div class="eight-div">
-        <p class="basic-txt">Basic Gift Idea</p>
-        <p class="mini-txt">
-          Mini Two Wheel<br /><span class="span">Self Balancing Scooter</span>
-        </p>
-        <button class="btn-3">Go Shop</button>
-      </div>
-      <div class="ninth-div">
-        <div class="deals" v-for="(deals, index) in dealings"
-          :key="index">
-          <div class="circle-div">
-            <p class="offer-txt">{{deals.offer}}</p>
-            <p class="span1">offer</p>
+        <div class="top-div">
+          <p class="top-txt">Top Categories This Week</p>
+        </div>
+        <div class="first-div">
+          <p class="mobile">Mobile</p>
+          <p class="headphone">Headphone</p>
+          <p class="camera">Camera</p>
+          <p class="drone">Drone</p>
+          <p class="speaker">Speaker</p>
+        </div>
+        <hr class="horizontal-rule" />
+        <div class="grid-container">
+          <div
+            class="grid-item"
+            v-for="(details, index) in itemsLessThanTen"
+            :key="index"
+          >
+            <img :src="details.img" alt="product-image" class="product-image" />
+            <div class="second-div">
+              <img :src="details.heart" alt="heart" class="heart" />
+              <div class="third-div">
+                <img
+                  :src="details.star1[details.starCurrent1]"
+                  alt="star"
+                  class="star"
+                  @click="changeStar1(index)"
+                />
+                <img
+                  :src="details.star2[details.starCurrent2]"
+                  alt="star"
+                  class="star"
+                  @click="changeStar2(index)"
+                />
+                <img
+                  :src="details.star3[details.starCurrent3]"
+                  alt="star"
+                  class="star"
+                  @click="changeStar3(index)"
+                />
+                <img
+                  :src="details.star4[details.starCurrent4]"
+                  alt="star"
+                  class="star"
+                  @click="changeStar4(index)"
+                />
+                <img
+                  :src="details.star5[details.starCurrent5]"
+                  alt="star"
+                  class="star"
+                  @click="changeStar5(index)"
+                />
+              </div>
+              <p class="product-name">{{ details.name }}</p>
+              <div class="fourth-div">
+                <p class="previous">{{ details.previous }}</p>
+                <p class="price-txt">{{ details.price }}</p>
+              </div>
+            </div>
           </div>
-          <img :src="deals.img" alt="product-image" class="laptop-img" />
-          <p class="intel">{{deals.name}}</p>
-          <div class="row-div">
-            <p class="first-price">{{deals.former}}</p>
-            <p class="second-price">{{deals.current}}</p>
+        </div>
+        <p class="see-txt">See More</p>
+      </div>
+      <div class="fifth-div">
+        <div class="sixth-div">
+          <p class="hot-txt">Hot Sale</p>
+          <div class="seventh-div">
+            <p class="off-txt">16% Off</p>
+            <p class="off-txt">25% Off</p>
+            <p class="off-txt">33% Off</p>
           </div>
-          <p class="just-txt">Just {{deals.left}} left</p>
+        </div>
+        <div class="eight-div">
+          <p class="basic-txt">Basic Gift Idea</p>
+          <p class="mini-txt">
+            Mini Two Wheel<br /><span class="span">Self Balancing Scooter</span>
+          </p>
+          <button class="btn-3">Go Shop</button>
+        </div>
+        <div class="ninth-div">
+          <div class="deals" v-for="(deals, index) in dealings" :key="index">
+            <div class="circle-div">
+              <p class="offer-txt">{{ deals.offer }}</p>
+              <p class="span1">offer</p>
+            </div>
+            <img :src="deals.img" alt="product-image" class="laptop-img" />
+            <p class="intel">{{ deals.name }}</p>
+            <div class="row-div">
+              <p class="first-price">{{ deals.former }}</p>
+              <p class="second-price">{{ deals.current }}</p>
+            </div>
+            <p class="just-txt">Just {{ deals.left }} left</p>
+          </div>
         </div>
       </div>
     </div>
@@ -143,15 +148,16 @@ export default {
 
   computed: {
     itemsLessThanTen: function () {
+      const app = this;
       return this.packageDetails.filter(function (details) {
-        return details.index <= 4;
+        return details.index <= app.number;
       });
     },
   },
 
   data() {
     return {
-      number: 3,
+      number: 7,
       dealings: [
         {
           index: 1,
@@ -160,7 +166,7 @@ export default {
           current: "N499.00",
           left: "2",
           offer: "16",
-          img: "laptop.png"
+          img: "laptop.png",
         },
         {
           index: 2,
@@ -169,7 +175,7 @@ export default {
           current: "N540.00",
           left: "2",
           offer: "16",
-          img: "new-watch.png"
+          img: "new-watch.png",
         },
       ],
       packageDetails: [
@@ -481,10 +487,10 @@ export default {
         this.packageDetails[index].starCurrent5 = 1;
       } else {
         this.packageDetails[index].starCurrent1 = 0;
-        this.packageDetails[index].starCurrent1 = 0;
-        this.packageDetails[index].starCurrent1 = 0;
-        this.packageDetails[index].starCurrent1 = 0;
-        this.packageDetails[index].starCurrent1 = 0;
+        this.packageDetails[index].starCurrent2 = 0;
+        this.packageDetails[index].starCurrent3 = 0;
+        this.packageDetails[index].starCurrent4 = 0;
+        this.packageDetails[index].starCurrent5 = 0;
       }
     },
   },
@@ -493,10 +499,13 @@ export default {
   
   <style scoped>
 .full-screen {
-  width: 100%;
-  max-width: 768px;
-  min-height: 700px;
-  height: 100vh;
+  width: auto;
+  height: auto;
+  margin: 0 0 0 0;
+}
+
+.max-div{
+  max-width: 540px;
   margin: 0 auto 0 auto;
 }
 
@@ -720,6 +729,7 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+  text-overflow: clip;
 }
 
 .mobile {
