@@ -37,7 +37,7 @@ export default {
   justify-content: space-between;
   margin: 0 0 0 0;
   width: 100%;
-  max-width: 768px;
+  max-width: 540px;
   background: transparent;
   height: auto;
   padding: 0;

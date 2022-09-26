@@ -19,7 +19,7 @@
       <div class="third-row">
         <div class="fourth-row">
           <input
-            type="text"
+            type="search"
             class="search-bar"
             placeholder="Find Your Product"
           />
@@ -31,12 +31,12 @@
           <p class="get-txt">Get 50% Off</p>
           <p class="shop-txt">SHOP WISE WITH PRICE COMPARISONS</p>
           <div class="sixth-row">
-            <div class="view-box">
+            <button class="view-box">
               <p class="view-txt">VIEW COLLECTION</p>
-            </div>
-            <div class="category-box">
+            </button>
+            <button class="category-box">
               <p class="category-txt">CATEGORIES</p>
-            </div>
+            </button>
           </div>
         </div>
         <div class="seventh-row">
@@ -47,22 +47,52 @@
           <p class="top-txt">Top Categories This Week</p>
         </div>
         <div class="first-div">
-          <p class="mobile">Mobile</p>
-          <p class="headphone">Headphone</p>
-          <p class="camera">Camera</p>
-          <p class="drone">Drone</p>
-          <p class="speaker">Speaker</p>
+          <p
+            :class="{ activeMobile: isActiveMobile }"
+            @click="activeClass()"
+            class="mobile"
+          >
+            Mobile
+          </p>
+          <p
+            class="headphone"
+            :class="{ activeHeadphone: isActiveHeadphone }"
+            @click="activateHeadphone()"
+          >
+            Headphone
+          </p>
+          <p
+            class="camera"
+            :class="{ activeCamera: isActiveCamera }"
+            @click="activateCamera()"
+          >
+            Camera
+          </p>
+          <p
+            class="drone"
+            :class="{ activeDrone: isActiveDrone }"
+            @click="activateDrone()"
+          >
+            Drone
+          </p>
+          <p
+            class="speaker"
+            :class="{ activeSpeaker: isActiveSpeaker }"
+            @click="activateSpeaker"
+          >
+            Speaker
+          </p>
         </div>
         <hr class="horizontal-rule" />
         <div class="grid-container">
           <div
             class="grid-item"
-            v-for="(details, index) in itemsLessThanTen"
+            v-for="(details, index) in itemsLessThanFour"
             :key="index"
           >
             <img :src="details.img" alt="product-image" class="product-image" />
             <div class="second-div">
-              <img :src="details.heart" alt="heart" class="heart" />
+              <img :src="details.heart[details.heartCurrent]" alt="heart" class="heart" @click="changeheart1(index)" />
               <div class="third-div">
                 <img
                   :src="details.star1[details.starCurrent1]"
@@ -103,7 +133,10 @@
             </div>
           </div>
         </div>
-        <p class="see-txt">See More</p>
+        <button class="see-txt" @click="viewMore">
+          <span v-if="number < 1000">See More</span>
+          <span v-else>See Less</span>
+        </button>
       </div>
       <div class="fifth-div">
         <div class="sixth-div">
@@ -137,6 +170,91 @@
           </div>
         </div>
       </div>
+      <div class="more-div">
+        <p class="more-txt">More for you</p>
+      </div>
+      <div class="copy-div">
+        <p class="mobile1" :class="{ activetab: isActiveWomen }" @click="activateWomen()">Women Clothing</p>
+        <p class="mobile2" :class="{ activetab1: isActiveMen }" @click="activateMen()">Mens Clothing</p>
+        <p class="mobile3" :class="{ activetab2: isActivePhone }" @click="activateMobile()">Mobile</p>
+        <p class="mobile4" :class="{ activetab3: isActiveComputer }" @click="activateComputer()">Computer</p>
+        <p class="mobile5" :class="{ activetab4: isActiveSpeaker }" @click="activateSpeakers()">Speaker</p>
+      </div>
+      <div class="second-grid">
+        <div
+          class="second-item"
+          v-for="(details, index) in itemsLessThanSix"
+          :key="index"
+        >
+          <div class="heart-div">
+            <img
+              :src="details.img"
+              alt="product-image"
+              class="product-image1"
+            />
+            <img alt="heart" :src="details.heart[details.heartCurrent]" class="heart1" @click="changeheart2(index)" />
+          </div>
+          <div class="second-div">
+            <div class="star-div">
+              <img
+                :src="details.star1[details.starCurrent1]"
+                alt="star"
+                class="star"
+                @click="newStar1(index)"
+              />
+              <img
+                :src="details.star2[details.starCurrent2]"
+                alt="star"
+                class="star"
+                @click="newStar2(index)"
+              />
+              <img
+                :src="details.star3[details.starCurrent3]"
+                alt="star"
+                class="star"
+                @click="newStar3(index)"
+              />
+              <img
+                :src="details.star4[details.starCurrent4]"
+                alt="star"
+                class="star"
+                @click="newStar4(index)"
+              />
+              <img
+                :src="details.star5[details.starCurrent5]"
+                alt="star"
+                class="star"
+                @click="newStar5(index)"
+              />
+            </div>
+            <p class="product-name1">{{ details.name }}</p>
+            <div class="fourth-div1">
+              <p class="previous">{{ details.previous }}</p>
+              <p class="price-txt">{{ details.price }}</p>
+            </div>
+          </div>
+          <img :src="details.plus" alt="add" class="plus" />
+        </div>
+      </div>
+      <button class="see-txt1" @click="seeMore">
+        <span v-if="secondNumber < 1000">See More</span>
+        <span v-else>See Less</span>
+      </button>
+      <div class="last-row">
+        <div class="last-item">
+          <img src="grid.svg" alt="add" class="nav" />
+          <p class="nav-txt">Explore</p>
+        </div>
+        <div class="last-item">
+          <img src="layers.svg" alt="add" class="nav" />
+          <p class="nav-txt">Categories</p>
+        </div>
+        <div class="last-item">
+          <img src="heart.svg" alt="add" class="nav" />
+          <p class="nav-txt">Wishlist</p>
+        </div>
+        <img src="profile.png" alt="profile-pic" class="profile" />
+      </div>
     </div>
   </div>
 </template>
@@ -147,17 +265,35 @@ export default {
   layout: "default",
 
   computed: {
-    itemsLessThanTen: function () {
+    itemsLessThanFour: function () {
       const app = this;
       return this.packageDetails.filter(function (details) {
         return details.index <= app.number;
+      });
+    },
+
+    itemsLessThanSix: function () {
+      const app = this;
+      return this.itemDetails.filter(function (details) {
+        return details.index <= app.secondNumber;
       });
     },
   },
 
   data() {
     return {
-      number: 7,
+      number: 4,
+      secondNumber: 6,
+      isActiveMobile: true,
+      isActiveHeadphone: false,
+      isActiveCamera: false,
+      isActiveDrone: false,
+      isActiveSpeaker: false,
+      isActiveMen: false,
+      isActivePhone: false,
+      isActiveComputer: false,
+      isActiveSpeaker: false,
+      isActiveWomen : true,
       dealings: [
         {
           index: 1,
@@ -184,7 +320,8 @@ export default {
           name: "Xpeed Projector",
           price: "N499.00",
           previous: "N520.00",
-          heart: "heart.svg",
+          heart: ["heart.svg", "green-heart.svg"],
+          heartCurrent: 0,
           img: "projector.png",
           star1: ["white-star.svg", "green-star.svg"],
           star2: ["white-star.svg", "green-star.svg"],
@@ -202,7 +339,8 @@ export default {
           name: "Bevigac Gamepad",
           price: "N499.00",
           previous: "N499.00",
-          heart: "heart.svg",
+          heart: ["heart.svg", "green-heart.svg"],
+          heartCurrent: 0,
           img: "pad.png",
           star1: ["white-star.svg", "green-star.svg"],
           star2: ["white-star.svg", "green-star.svg"],
@@ -220,7 +358,8 @@ export default {
           name: "Headset for Phones",
           price: "N199.00",
           previous: null,
-          heart: "heart.svg",
+          heart: ["heart.svg", "green-heart.svg"],
+          heartCurrent: 0,
           img: "head-phones.png",
           star1: ["white-star.svg", "green-star.svg"],
           star2: ["white-star.svg", "green-star.svg"],
@@ -238,7 +377,8 @@ export default {
           name: "Goldenhour Watch",
           price: "N60.00",
           previous: null,
-          heart: "heart.svg",
+          heart: ["heart.svg", "green-heart.svg"],
+          heartCurrent: 0,
           img: "digital-watch.png",
           star1: ["white-star.svg", "green-star.svg"],
           star2: ["white-star.svg", "green-star.svg"],
@@ -256,7 +396,8 @@ export default {
           name: "Xpeed Projector",
           price: "N499.00",
           previous: null,
-          heart: "heart.svg",
+          heart: ["heart.svg", "green-heart.svg"],
+          heartCurrent: 0,
           img: "projector.png",
           star1: ["white-star.svg", "green-star.svg"],
           star2: ["white-star.svg", "green-star.svg"],
@@ -274,7 +415,8 @@ export default {
           name: "Xpeed Projector",
           price: "N499.00",
           previous: null,
-          heart: "heart.svg",
+          heart: ["heart.svg", "green-heart.svg"],
+          heartCurrent: 0,
           img: "projector.png",
           star1: ["white-star.svg", "green-star.svg"],
           star2: ["white-star.svg", "green-star.svg"],
@@ -292,7 +434,8 @@ export default {
           name: "Xpeed Projector",
           price: "N499.00",
           previous: null,
-          heart: "heart.svg",
+          heart: ["heart.svg", "green-heart.svg"],
+          heartCurrent: 0,
           img: "projector.png",
           star1: ["white-star.svg", "green-star.svg"],
           star2: ["white-star.svg", "green-star.svg"],
@@ -310,7 +453,8 @@ export default {
           name: "Xpeed Projector",
           price: "N499.00",
           previous: null,
-          heart: "heart.svg",
+          heart: ["heart.svg", "green-heart.svg"],
+          heartCurrent: 0,
           img: "projector.png",
           star1: ["white-star.svg", "green-star.svg"],
           star2: ["white-star.svg", "green-star.svg"],
@@ -328,7 +472,8 @@ export default {
           name: "Xpeed Projector",
           price: "N499.00",
           previous: null,
-          heart: "heart.svg",
+          heart: ["heart.svg", "green-heart.svg"],
+          heartCurrent: 0,
           img: "projector.png",
           star1: ["white-star.svg", "green-star.svg"],
           star2: ["white-star.svg", "green-star.svg"],
@@ -346,7 +491,8 @@ export default {
           name: "Xpeed Projector",
           price: "N499.00",
           previous: null,
-          heart: "heart.svg",
+          heart: ["heart.svg", "green-heart.svg"],
+          heartCurrent: 0,
           img: "projector.png",
           star1: ["white-star.svg", "green-star.svg"],
           star2: ["white-star.svg", "green-star.svg"],
@@ -360,10 +506,323 @@ export default {
           starCurrent5: 0,
         },
       ],
+
+      itemDetails: [
+        {
+          index: 1,
+          name: "Women Tops Solid Color",
+          price: "N499.00",
+          previous: "N520.00",
+          heart: ["heart.svg", "green-heart.svg"],
+          heartCurrent: 0,
+          img: "secondset1.png",
+          star1: ["white-star.svg", "green-star.svg"],
+          star2: ["white-star.svg", "green-star.svg"],
+          star3: ["white-star.svg", "green-star.svg"],
+          star4: ["white-star.svg", "green-star.svg"],
+          star5: ["white-star.svg", "green-star.svg"],
+          starCurrent1: 0,
+          starCurrent2: 0,
+          starCurrent3: 0,
+          starCurrent4: 0,
+          starCurrent5: 0,
+          plus: "plus.svg",
+        },
+        {
+          index: 2,
+          name: "Women Tops",
+          price: "N499.00",
+          previous: "N520.00",
+          heart: ["heart.svg", "green-heart.svg"],
+          heartCurrent: 0,
+          img: "secondset2.png",
+          star1: ["white-star.svg", "green-star.svg"],
+          star2: ["white-star.svg", "green-star.svg"],
+          star3: ["white-star.svg", "green-star.svg"],
+          star4: ["white-star.svg", "green-star.svg"],
+          star5: ["white-star.svg", "green-star.svg"],
+          starCurrent1: 0,
+          starCurrent2: 0,
+          starCurrent3: 0,
+          starCurrent4: 0,
+          starCurrent5: 0,
+          plus: "plus.svg",
+        },
+        {
+          index: 3,
+          name: "Summer Casual Cotton",
+          price: "N499.00",
+          previous: "N520.00",
+          heart: ["heart.svg", "green-heart.svg"],
+          heartCurrent: 0,
+          img: "secondset3.png",
+          star1: ["white-star.svg", "green-star.svg"],
+          star2: ["white-star.svg", "green-star.svg"],
+          star3: ["white-star.svg", "green-star.svg"],
+          star4: ["white-star.svg", "green-star.svg"],
+          star5: ["white-star.svg", "green-star.svg"],
+          starCurrent1: 0,
+          starCurrent2: 0,
+          starCurrent3: 0,
+          starCurrent4: 0,
+          starCurrent5: 0,
+          plus: "plus.svg",
+        },
+        {
+          index: 4,
+          name: "Women Tops Solid Color",
+          price: "N499.00",
+          previous: "N520.00",
+          heart: ["heart.svg", "green-heart.svg"],
+          heartCurrent: 0,
+          img: "secondset4.png",
+          star1: ["white-star.svg", "green-star.svg"],
+          star2: ["white-star.svg", "green-star.svg"],
+          star3: ["white-star.svg", "green-star.svg"],
+          star4: ["white-star.svg", "green-star.svg"],
+          star5: ["white-star.svg", "green-star.svg"],
+          starCurrent1: 0,
+          starCurrent2: 0,
+          starCurrent3: 0,
+          starCurrent4: 0,
+          starCurrent5: 0,
+          plus: "plus.svg",
+        },
+        {
+          index: 5,
+          name: "Women Tops",
+          price: "N499.00",
+          previous: "N520.00",
+          heart: ["heart.svg", "green-heart.svg"],
+          heartCurrent: 0,
+          img: "secondset1.png",
+          star1: ["white-star.svg", "green-star.svg"],
+          star2: ["white-star.svg", "green-star.svg"],
+          star3: ["white-star.svg", "green-star.svg"],
+          star4: ["white-star.svg", "green-star.svg"],
+          star5: ["white-star.svg", "green-star.svg"],
+          starCurrent1: 0,
+          starCurrent2: 0,
+          starCurrent3: 0,
+          starCurrent4: 0,
+          starCurrent5: 0,
+          plus: "plus.svg",
+        },
+        {
+          index: 6,
+          name: "Summer Casual Cotton",
+          price: "N499.00",
+          previous: "N520.00",
+          heart: ["heart.svg", "green-heart.svg"],
+          heartCurrent: 0,
+          img: "secondset2.png",
+          star1: ["white-star.svg", "green-star.svg"],
+          star2: ["white-star.svg", "green-star.svg"],
+          star3: ["white-star.svg", "green-star.svg"],
+          star4: ["white-star.svg", "green-star.svg"],
+          star5: ["white-star.svg", "green-star.svg"],
+          starCurrent1: 0,
+          starCurrent2: 0,
+          starCurrent3: 0,
+          starCurrent4: 0,
+          starCurrent5: 0,
+          plus: "plus.svg",
+        },
+        {
+          index: 7,
+          name: "Women Tops Solid Color",
+          price: "N499.00",
+          previous: "N520.00",
+          heart: ["heart.svg", "green-heart.svg"],
+          heartCurrent: 0,
+          img: "secondset1.png",
+          star1: ["white-star.svg", "green-star.svg"],
+          star2: ["white-star.svg", "green-star.svg"],
+          star3: ["white-star.svg", "green-star.svg"],
+          star4: ["white-star.svg", "green-star.svg"],
+          star5: ["white-star.svg", "green-star.svg"],
+          starCurrent1: 0,
+          starCurrent2: 0,
+          starCurrent3: 0,
+          starCurrent4: 0,
+          starCurrent5: 0,
+          plus: "plus.svg",
+        },
+        {
+          index: 8,
+          name: "Women Tops Solid Color",
+          price: "N499.00",
+          previous: "N520.00",
+          heart: ["heart.svg", "green-heart.svg"],
+          heartCurrent: 0,
+          img: "secondset1.png",
+          star1: ["white-star.svg", "green-star.svg"],
+          star2: ["white-star.svg", "green-star.svg"],
+          star3: ["white-star.svg", "green-star.svg"],
+          star4: ["white-star.svg", "green-star.svg"],
+          star5: ["white-star.svg", "green-star.svg"],
+          starCurrent1: 0,
+          starCurrent2: 0,
+          starCurrent3: 0,
+          starCurrent4: 0,
+          starCurrent5: 0,
+          plus: "plus.svg",
+        },
+        {
+          index: 9,
+          name: "Women Tops Solid Color",
+          price: "N499.00",
+          previous: "N520.00",
+          heart: ["heart.svg", "green-heart.svg"],
+          heartCurrent: 0,
+          img: "secondset1.png",
+          star1: ["white-star.svg", "green-star.svg"],
+          star2: ["white-star.svg", "green-star.svg"],
+          star3: ["white-star.svg", "green-star.svg"],
+          star4: ["white-star.svg", "green-star.svg"],
+          star5: ["white-star.svg", "green-star.svg"],
+          starCurrent1: 0,
+          starCurrent2: 0,
+          starCurrent3: 0,
+          starCurrent4: 0,
+          starCurrent5: 0,
+          plus: "plus.svg",
+        },
+        {
+          index: 10,
+          name: "Women Tops Solid Color",
+          price: "N499.00",
+          previous: "N520.00",
+          heart: ["heart.svg", "green-heart.svg"],
+          heartCurrent: 0,
+          img: "secondset1.png",
+          star1: ["white-star.svg", "green-star.svg"],
+          star2: ["white-star.svg", "green-star.svg"],
+          star3: ["white-star.svg", "green-star.svg"],
+          star4: ["white-star.svg", "green-star.svg"],
+          star5: ["white-star.svg", "green-star.svg"],
+          starCurrent1: 0,
+          starCurrent2: 0,
+          starCurrent3: 0,
+          starCurrent4: 0,
+          starCurrent5: 0,
+          plus: "plus.svg",
+        },
+      ],
     };
   },
 
   methods: {
+    activateMen() {
+      this.isActiveMen = true;
+      this.isActivePhone = false;
+      this.isActiveComputer = false;
+      this.isActiveSpeaker = false;
+      this.isActiveWomen = false;
+    },
+
+    activateMobile() {
+      this.isActiveMen = false;
+      this.isActivePhone = true;
+      this.isActiveComputer = false;
+      this.isActiveSpeaker = false;
+      this.isActiveWomen = false;
+    },
+
+    activateComputer() {
+      this.isActiveMen = false;
+      this.isActivePhone = false;
+      this.isActiveComputer = true;
+      this.isActiveSpeaker = false;
+      this.isActiveWomen = false;
+    },
+
+    activateSpeakers() {
+      this.isActiveMen = false;
+      this.isActivePhone = false;
+      this.isActiveComputer = false;
+      this.isActiveSpeaker = true;
+      this.isActiveWomen = false;
+    },
+  
+
+    activateWomen() {
+      this.isActiveMen = false;
+      this.isActivePhone = false;
+      this.isActiveComputer = false;
+      this.isActiveSpeaker = false;
+      this.isActiveWomen = true;
+    },
+
+    viewMore() {
+      this.number = this.number === 4 ? 1000 : 4;
+    },
+
+    seeMore() {
+      if (this.secondNumber <= 6) {
+        this.secondNumber = 1000;
+      } else {
+        this.secondNumber = 6;
+      }
+    },
+
+
+    activeClass() {
+      this.isActiveMobile = true;
+      this.isActiveHeadphone = false;
+      this.isActiveCamera = false;
+      this.isActiveDrone = false;
+      this.isActiveSpeaker = false;
+    },
+
+    activateHeadphone() {
+      this.isActiveMobile = false;
+      this.isActiveHeadphone = true;
+      this.isActiveCamera = false;
+      this.isActiveDrone = false;
+      this.isActiveSpeaker = false;
+    },
+
+    activateCamera() {
+      this.isActiveMobile = false;
+      this.isActiveHeadphone = false;
+      this.isActiveCamera = true;
+      this.isActiveDrone = false;
+      this.isActiveSpeaker = false;
+    },
+
+    activateDrone() {
+      this.isActiveMobile = false;
+      this.isActiveHeadphone = false;
+      this.isActiveCamera = false;
+      this.isActiveDrone = true;
+      this.isActiveSpeaker = false;
+    },
+
+    activateSpeaker() {
+      this.isActiveMobile = false;
+      this.isActiveHeadphone = false;
+      this.isActiveCamera = false;
+      this.isActiveDrone = false;
+      this.isActiveSpeaker = true;
+    },
+
+    changeheart1(index){
+      if (this.packageDetails[index].heartCurrent < 1) {
+        this.packageDetails[index].heartCurrent = 1;
+      } else  {
+        this.packageDetails[index].heartCurrent = 0;
+      }
+    },
+
+    changeheart2(index){
+      if (this.itemDetails[index].heartCurrent < 1) {
+        this.itemDetails[index].heartCurrent = 1;
+      } else  {
+        this.itemDetails[index].heartCurrent = 0;
+      }
+    },
+
     changeStar1(index) {
       if (this.packageDetails[index].starCurrent1 < 1) {
         this.packageDetails[index].starCurrent1 = 1;
@@ -400,6 +859,43 @@ export default {
       }
     },
 
+    newStar1(index) {
+      if (this.itemDetails[index].starCurrent1 < 1) {
+        this.itemDetails[index].starCurrent1 = 1;
+        this.itemDetails[index].starCurrent2 = 0;
+        this.itemDetails[index].starCurrent3 = 0;
+        this.itemDetails[index].starCurrent4 = 0;
+        this.itemDetails[index].starCurrent5 = 0;
+      } else if (this.itemDetails[index].starCurrent5 > 0) {
+        this.itemDetails[index].starCurrent1 = 1;
+        this.itemDetails[index].starCurrent2 = 0;
+        this.itemDetails[index].starCurrent3 = 0;
+        this.itemDetails[index].starCurrent4 = 0;
+        this.itemDetails[index].starCurrent5 = 0;
+      } else if (this.itemDetails[index].starCurrent4 > 0) {
+        this.itemDetails[index].starCurrent1 = 1;
+        this.itemDetails[index].starCurrent2 = 0;
+        this.itemDetails[index].starCurrent3 = 0;
+        this.itemDetails[index].starCurrent4 = 0;
+        this.itemDetails[index].starCurrent5 = 0;
+      } else if (this.itemDetails[index].starCurrent3 > 0) {
+        this.itemDetails[index].starCurrent1 = 1;
+        this.itemDetails[index].starCurrent2 = 0;
+        this.itemDetails[index].starCurrent3 = 0;
+        this.itemDetails[index].starCurrent4 = 0;
+        this.itemDetails[index].starCurrent5 = 0;
+      } else if (this.itemDetails[index].starCurrent2 > 0) {
+        this.itemDetails[index].starCurrent1 = 1;
+        this.itemDetails[index].starCurrent2 = 0;
+        this.itemDetails[index].starCurrent3 = 0;
+        this.itemDetails[index].starCurrent4 = 0;
+        this.itemDetails[index].starCurrent5 = 0;
+      } else {
+        this.itemDetails[index].starCurrent1 = 0;
+      }
+    },
+
+
     changeStar2(index) {
       if (this.packageDetails[index].starCurrent2 < 1) {
         this.packageDetails[index].starCurrent1 = 1;
@@ -431,6 +927,37 @@ export default {
       }
     },
 
+    newStar2(index) {
+      if (this.itemDetails[index].starCurrent2 < 1) {
+        this.itemDetails[index].starCurrent1 = 1;
+        this.itemDetails[index].starCurrent2 = 1;
+        this.itemDetails[index].starCurrent3 = 0;
+        this.itemDetails[index].starCurrent4 = 0;
+        this.itemDetails[index].starCurrent5 = 0;
+      } else if (this.itemDetails[index].starCurrent5 > 0) {
+        this.itemDetails[index].starCurrent1 = 1;
+        this.itemDetails[index].starCurrent2 = 1;
+        this.itemDetails[index].starCurrent3 = 0;
+        this.itemDetails[index].starCurrent4 = 0;
+        this.itemDetails[index].starCurrent5 = 0;
+      } else if (this.itemDetails[index].starCurrent4 > 0) {
+        this.itemDetails[index].starCurrent1 = 1;
+        this.itemDetails[index].starCurrent2 = 1;
+        this.itemDetails[index].starCurrent3 = 0;
+        this.itemDetails[index].starCurrent4 = 0;
+        this.itemDetails[index].starCurrent5 = 0;
+      } else if (this.itemDetails[index].starCurrent3 > 0) {
+        this.itemDetails[index].starCurrent1 = 1;
+        this.itemDetails[index].starCurrent2 = 1;
+        this.itemDetails[index].starCurrent3 = 0;
+        this.itemDetails[index].starCurrent4 = 0;
+        this.itemDetails[index].starCurrent5 = 0;
+      } else {
+        this.itemDetails[index].starCurrent1 = 0;
+        this.itemDetails[index].starCurrent2 = 0;
+      }
+    },
+
     changeStar3(index) {
       if (this.packageDetails[index].starCurrent3 < 1) {
         this.packageDetails[index].starCurrent1 = 1;
@@ -457,6 +984,32 @@ export default {
       }
     },
 
+    newStar3(index) {
+      if (this.itemDetails[index].starCurrent3 < 1) {
+        this.itemDetails[index].starCurrent1 = 1;
+        this.itemDetails[index].starCurrent2 = 1;
+        this.itemDetails[index].starCurrent3 = 1;
+        this.itemDetails[index].starCurrent4 = 0;
+        this.itemDetails[index].starCurrent5 = 0;
+      } else if (this.itemDetails[index].starCurrent5 > 0) {
+        this.itemDetails[index].starCurrent1 = 1;
+        this.itemDetails[index].starCurrent2 = 1;
+        this.itemDetails[index].starCurrent3 = 1;
+        this.itemDetails[index].starCurrent4 = 0;
+        this.itemDetails[index].starCurrent5 = 0;
+      } else if (this.itemDetails[index].starCurrent4 > 0) {
+        this.itemDetails[index].starCurrent1 = 1;
+        this.itemDetails[index].starCurrent2 = 1;
+        this.itemDetails[index].starCurrent3 = 1;
+        this.itemDetails[index].starCurrent4 = 0;
+        this.itemDetails[index].starCurrent5 = 0;
+      } else {
+        this.itemDetails[index].starCurrent1 = 0;
+        this.itemDetails[index].starCurrent2 = 0;
+        this.itemDetails[index].starCurrent3 = 0;
+      }
+    },
+
     changeStar4(index) {
       if (this.packageDetails[index].starCurrent4 < 1) {
         this.packageDetails[index].starCurrent1 = 1;
@@ -478,6 +1031,27 @@ export default {
       }
     },
 
+    newStar4(index) {
+      if (this.itemDetails[index].starCurrent4 < 1) {
+        this.itemDetails[index].starCurrent1 = 1;
+        this.itemDetails[index].starCurrent2 = 1;
+        this.itemDetails[index].starCurrent3 = 1;
+        this.itemDetails[index].starCurrent4 = 1;
+        this.itemDetails[index].starCurrent5 = 0;
+      } else if (this.itemDetails[index].starCurrent5 > 0) {
+        this.itemDetails[index].starCurrent1 = 1;
+        this.itemDetails[index].starCurrent2 = 1;
+        this.itemDetails[index].starCurrent3 = 1;
+        this.itemDetails[index].starCurrent4 = 1;
+        this.itemDetails[index].starCurrent5 = 0;
+      } else {
+        this.itemDetails[index].starCurrent1 = 0;
+        this.itemDetails[index].starCurrent2 = 0;
+        this.itemDetails[index].starCurrent3 = 0;
+        this.itemDetails[index].starCurrent4 = 0;
+      }
+    },
+
     changeStar5(index) {
       if (this.packageDetails[index].starCurrent5 < 1) {
         this.packageDetails[index].starCurrent1 = 1;
@@ -493,6 +1067,22 @@ export default {
         this.packageDetails[index].starCurrent5 = 0;
       }
     },
+
+    newStar5(index) {
+      if (this.itemDetails[index].starCurrent5 < 1) {
+        this.itemDetails[index].starCurrent1 = 1;
+        this.itemDetails[index].starCurrent2 = 1;
+        this.itemDetails[index].starCurrent3 = 1;
+        this.itemDetails[index].starCurrent4 = 1;
+        this.itemDetails[index].starCurrent5 = 1;
+      } else {
+        this.itemDetails[index].starCurrent1 = 0;
+        this.itemDetails[index].starCurrent2 = 0;
+        this.itemDetails[index].starCurrent3 = 0;
+        this.itemDetails[index].starCurrent4 = 0;
+        this.itemDetails[index].starCurrent5 = 0;
+      }
+    },
   },
 };
 </script>
@@ -504,7 +1094,7 @@ export default {
   margin: 0 0 0 0;
 }
 
-.max-div{
+.max-div {
   max-width: 540px;
   margin: 0 auto 0 auto;
 }
@@ -514,18 +1104,30 @@ export default {
   background: #ffffff;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.02);
   flex-direction: row;
-  width: 100%;
-  margin: 59px 0 0 0;
+  width: 92%;
+  margin: 59px auto 0 auto;
   justify-content: start;
   padding-bottom: 13px;
 }
 
 .first-col {
-  margin: 11px 0 0 16px;
+  margin: 11px 0 0 0;
 }
 
 .second-col {
   margin: 0 0 0 19px;
+}
+
+.shopping-bag {
+  width: 24px;
+  height: 24px;
+  margin: 0 0 0 0;
+}
+
+.menu {
+  width: 24px;
+  height: 24px;
+  margin: 0 0 0 0;
 }
 
 .yohagi {
@@ -565,21 +1167,21 @@ export default {
 }
 
 .third-col {
-  margin: 0 16px 0 auto;
+  margin: 11px 0 0 auto;
 }
 
 .third-row {
   background: #ffffff;
   width: 100%;
   margin: 0 0 0 0;
-  padding: 0 16px 0 16px;
 }
 
 .fourth-row {
   display: flex;
   flex-direction: row;
-  width: fit-content;
+  width: 92%;
   margin: 0 auto 0 auto;
+  justify-content: center;
 }
 
 .search-bar {
@@ -618,12 +1220,12 @@ export default {
 }
 
 .fifth-row {
-  width: 375px;
+  width: 92%;
   height: 251px;
   background: url("~assets/shopping.png");
   background-position: center;
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
   margin: 22px auto 0 auto;
 }
 
@@ -660,6 +1262,7 @@ export default {
   border: 1px solid #f5f8ff;
   border-radius: 3px;
   margin: 26px 8px 0 38px;
+  background: none;
 }
 
 .view-txt {
@@ -696,6 +1299,7 @@ export default {
   flex-direction: row;
   width: fit-content;
   margin: 20px auto 0 auto;
+  justify-content: center;
 }
 
 .watch {
@@ -707,12 +1311,15 @@ export default {
 .sweater {
   width: 169px;
   height: 99px;
-  margin: 0 0 0 37px;
+  margin: 0 0 0 5px;
 }
 
 .top-div {
   margin: 24px auto 0 auto;
-  width: 375px;
+}
+
+.more-div {
+  margin: 39px 0 0 0;
 }
 
 .top-txt {
@@ -722,14 +1329,141 @@ export default {
   font-size: 14px;
   line-height: 17px;
   color: #000000;
+  margin: 0 0 0 4%;
+}
+
+.more-txt {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #000000;
+  margin: 0 0 0 4%;
+}
+
+.copy-div {
+  margin: 17px auto 0 auto;
+  display: flex;
+  flex-direction: row;
+  overflow: scroll;
 }
 
 .first-div {
   margin: 17px auto 0 auto;
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
-  text-overflow: clip;
+  overflow: scroll;
+}
+
+.mobile.activeMobile {
+  border-bottom: 2px solid #06d6a0;
+  color: #06d6a0;
+}
+
+.headphone.activeHeadphone {
+  border-bottom: 2px solid #06d6a0;
+  color: #06d6a0;
+}
+
+.camera.activeCamera {
+  border-bottom: 2px solid #06d6a0;
+  color: #06d6a0;
+}
+
+.drone.activeDrone {
+  border-bottom: 2px solid #06d6a0;
+  color: #06d6a0;
+}
+
+.speaker.activeSpeaker {
+  border-bottom: 2px solid #06d6a0;
+  color: #06d6a0;
+}
+
+.mobile1 {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  color: #a6a8ad;
+  margin: 0 22px 0 16px;
+  padding-bottom: 12px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.mobile1.activetab {
+  color: #06d6a0;
+}
+
+.mobile2.activetab1 {
+  color: #06d6a0;
+}
+
+.mobile3.activetab2 {
+  color: #06d6a0;
+}
+
+.mobile4.activetab3 {
+  color: #06d6a0;
+}
+
+.mobile5.activetab4 {
+  color: #06d6a0;
+}
+
+.mobile2 {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  color: #a6a8ad;
+  margin: 0 22px 0 0;
+  padding-bottom: 12px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.mobile3 {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  color: #a6a8ad;
+  margin: 0 22px 0 0;
+  padding-bottom: 12px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.mobile4 {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  color: #a6a8ad;
+  margin: 0 22px 0 0;
+  padding-bottom: 12px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.mobile5 {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  color: #a6a8ad;
+  margin: 0 22px 0 16px;
+  padding-bottom: 12px;
+  white-space: nowrap;
+  cursor: pointer;
 }
 
 .mobile {
@@ -739,19 +1473,23 @@ export default {
   font-size: 16px;
   line-height: 19px;
   color: #a6a8ad;
-  margin: 0 0 0 0;
+  margin: 0 22px 0 16px;
   padding-bottom: 12px;
+  text-overflow: clip;
+  cursor: pointer;
 }
 
 .headphone {
-  font-family: "Rubik";
+  font-family: "Rubik", "sans";
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 19px;
   color: #a6a8ad;
-  margin: 0 0 0 0;
+  margin: 0 22px 0 0;
   padding-bottom: 12px;
+  text-overflow: clip;
+  cursor: pointer;
 }
 
 .camera {
@@ -761,8 +1499,10 @@ export default {
   font-size: 16px;
   line-height: 19px;
   color: #a6a8ad;
-  margin: 0 0 0 0;
+  margin: 0 22px 0 0;
   padding-bottom: 12px;
+  text-overflow: clip;
+  cursor: pointer;
 }
 
 .drone {
@@ -772,8 +1512,10 @@ export default {
   font-size: 16px;
   line-height: 19px;
   color: #a6a8ad;
-  margin: 0 0 0 0;
+  margin: 0 22px 0 0;
   padding-bottom: 12px;
+  text-overflow: clip;
+  cursor: pointer;
 }
 
 .speaker {
@@ -783,8 +1525,10 @@ export default {
   font-size: 16px;
   line-height: 19px;
   color: #a6a8ad;
-  margin: 0 0 0 0;
+  margin: 0 16px 0 0;
   padding-bottom: 12px;
+  text-overflow: clip;
+  cursor: pointer;
 }
 
 .horizontal-rule {
@@ -797,12 +1541,38 @@ export default {
 
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, 211px);
+  grid-template-columns: 211px 211px;
   background-color: #ffffff;
   width: 100%;
-  justify-content: space-between;
+  justify-content: start;
   row-gap: 11px;
-  margin: 15px 0 0 0;
+  column-gap: 6px;
+  margin: 15px 4% 0 4%;
+  white-space: nowrap;
+  overflow: scroll;
+}
+
+.second-grid {
+  display: grid;
+  grid-template-columns: 163px 163px;
+  background-color: #ffffff;
+  width: 100%;
+  justify-content: space-evenly;
+  row-gap: 13px;
+  column-gap: 17px;
+  margin: 24px auto 0 auto;
+  white-space: nowrap;
+}
+
+.second-item {
+  background: #fbfcfe;
+  border: 1px solid rgba(55, 119, 177, 0.07);
+  border-radius: 3px;
+  height: 167px;
+  width: 163px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 0 0 0;
 }
 
 .grid-item {
@@ -822,11 +1592,25 @@ export default {
   margin: 0 0 0 0;
 }
 
+.product-image1 {
+  width: 73px;
+  height: 83px;
+  margin: 0 0 0 40px;
+}
+
 .second-div {
   display: flex;
   flex-direction: column;
   margin: 0 0 0 0;
   width: 100%;
+}
+
+.heart-div {
+  margin: 0 0 0 0;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: flex-start;
 }
 
 .third-div {
@@ -836,6 +1620,15 @@ export default {
   height: 11px;
   justify-content: space-between;
   margin: 0 0 0 0;
+}
+
+.star-div {
+  display: flex;
+  flex-direction: row;
+  width: 62px;
+  height: 11px;
+  justify-content: space-between;
+  margin: 0 0 0 17px;
 }
 
 .star {
@@ -852,10 +1645,26 @@ export default {
   margin: 7px 0 0 0;
 }
 
+.product-name1 {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  color: #000000;
+  margin: 7px 0 0 17px;
+}
+
 .fourth-div {
   display: flex;
   flex-direction: row;
   margin: 9px 0 0 0;
+}
+
+.fourth-div1 {
+  display: flex;
+  flex-direction: row;
+  margin: 8px 0 0 17px;
 }
 
 .previous {
@@ -887,6 +1696,12 @@ export default {
   margin: 7.8px 8.3px 0 0;
 }
 
+.heart1 {
+  width: 16px;
+  height: 16px;
+  margin: 10px 10px 0 auto;
+}
+
 .see-txt {
   font-family: "Rubik";
   font-style: normal;
@@ -897,13 +1712,34 @@ export default {
   text-decoration-line: underline;
   color: #06d6a0;
   margin: 20px auto 28px auto;
+  border: none;
+  background: none;
+  display: block;
+  cursor: pointer;
+}
+
+.see-txt1 {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  text-decoration-line: underline;
+  color: #06d6a0;
+  margin: 17px auto 14px auto;
+  padding-bottom: 80px;
+  border: none;
+  background: none;
+  display: block;
+  cursor: pointer;
 }
 
 .fifth-div {
   width: 100%;
   background: #f4f6fa;
   margin: 0 0 0 0;
-  padding: 0 16px 37px 16px;
+  padding: 0 0 37px 0;
 }
 
 .sixth-div {
@@ -912,6 +1748,8 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
+  margin: 0 auto 0 auto;
 }
 
 .hot-txt {
@@ -919,8 +1757,8 @@ export default {
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
-  line-height: 17px;
   color: #000000;
+  margin: 0 18% 0 4%;
 }
 
 .off-txt {
@@ -928,7 +1766,6 @@ export default {
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
-  line-height: 19px;
   color: #a6a8ad;
 }
 
@@ -936,9 +1773,8 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  min-width: 218px;
-  width: 64%;
-  margin: 0 0 0 0;
+  width: 58%;
+  margin: 0 4% 0 0;
 }
 
 .eight-div {
@@ -1000,10 +1836,11 @@ export default {
 }
 
 .ninth-div {
-  margin: 21px 0 0 0;
+  margin: 21px auto 0 auto;
   display: flex;
   flex-direction: row;
   justify-content: center;
+  width: 100%;
 }
 
 .deals {
@@ -1012,6 +1849,11 @@ export default {
   background: #ffffff;
   text-align: center;
   margin: 0 1px 0 0;
+}
+
+.deals:hover {
+  width: 201px;
+  height: 251px;
 }
 
 .laptop-img {
@@ -1104,5 +1946,56 @@ export default {
   line-height: 17px;
   color: #bc1414;
   margin: 11px auto 0 auto;
+}
+
+.plus {
+  width: 14px;
+  height: 14px;
+  background: #3b4f62;
+  padding: 6px 6px 6px 6px;
+  border-radius: 50%;
+  margin: 2px 0 0 131px;
+}
+
+.last-row {
+  height: 76px;
+  width: 100%;
+  max-width: 540px;
+  background: #ffffff;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  position: fixed;
+  bottom: 0;
+  margin: 0 auto 0 auto;
+}
+
+.last-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.nav {
+  height: 18px;
+  width: 18px;
+  margin: 17px 0 0 0;
+}
+
+.profile {
+  height: 38px;
+  width: 38px;
+  margin: 22px 0 0 0;
+}
+
+.nav-txt {
+  font-family: "Proxima Nova";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #819bb3;
+  margin: 12px 0 0 0;
 }
 </style>
