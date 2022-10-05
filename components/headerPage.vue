@@ -57,6 +57,7 @@ export default {
 .last-row {
   height: 76px;
   width: 100%;
+  max-width: 540px;
   background: #ffffff;
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
   display: flex;
