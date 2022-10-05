@@ -9,7 +9,7 @@
           <img src="yohagi.png" class="yohagi" alt="yohagi-symbol" />
           <div class="second-row">
             <p class="iyana-txt">Iyana Ipaja Market</p>
-            <p class="switch-txt">switch</p>
+            <button class="switch-txt" @click="openModal">switch</button>
           </div>
         </div>
         <div class="third-col">
@@ -31,7 +31,7 @@
           <p class="get-txt">Get 50% Off</p>
           <p class="shop-txt">SHOP WISE WITH PRICE COMPARISONS</p>
           <div class="sixth-row">
-            <button class="view-box">
+            <button class="view-box" @click="productDetails">
               <p class="view-txt">VIEW COLLECTION</p>
             </button>
             <button class="category-box">
@@ -40,8 +40,8 @@
           </div>
         </div>
         <div class="seventh-row">
-          <img src="watch.png" class="watch" alt="watch-img" />
-          <img src="sweater.png" class="sweater" alt="sweater-img" />
+          <img src="watch.png" class="watch" alt="watch-img" @click="productDetails" />
+          <img src="sweater.png" class="sweater" alt="sweater-img" @click="productDetails" />
         </div>
         <div class="top-div">
           <p class="top-txt">Top Categories This Week</p>
@@ -92,7 +92,12 @@
           >
             <img :src="details.img" alt="product-image" class="product-image" />
             <div class="second-div">
-              <img :src="details.heart[details.heartCurrent]" alt="heart" class="heart" @click="changeheart1(index)" />
+              <img
+                :src="details.heart[details.heartCurrent]"
+                alt="heart"
+                class="heart"
+                @click="changeheart1(index)"
+              />
               <div class="third-div">
                 <img
                   :src="details.star1[details.starCurrent1]"
@@ -152,10 +157,10 @@
           <p class="mini-txt">
             Mini Two Wheel<br /><span class="span">Self Balancing Scooter</span>
           </p>
-          <button class="btn-3">Go Shop</button>
+          <button class="btn-3" @click="productDetails">Go Shop</button>
         </div>
         <div class="ninth-div">
-          <div class="deals" v-for="(deals, index) in dealings" :key="index">
+          <div class="deals" v-for="(deals, index) in dealings" :key="index" @click="productDetails">
             <div class="circle-div">
               <p class="offer-txt">{{ deals.offer }}</p>
               <p class="span1">offer</p>
@@ -174,11 +179,41 @@
         <p class="more-txt">More for you</p>
       </div>
       <div class="copy-div">
-        <p class="mobile1" :class="{ activetab: isActiveWomen }" @click="activateWomen()">Women Clothing</p>
-        <p class="mobile2" :class="{ activetab1: isActiveMen }" @click="activateMen()">Mens Clothing</p>
-        <p class="mobile3" :class="{ activetab2: isActivePhone }" @click="activateMobile()">Mobile</p>
-        <p class="mobile4" :class="{ activetab3: isActiveComputer }" @click="activateComputer()">Computer</p>
-        <p class="mobile5" :class="{ activetab4: isActiveSpeaker }" @click="activateSpeakers()">Speaker</p>
+        <p
+          class="mobile1"
+          :class="{ activetab: isActiveWomen }"
+          @click="activateWomen()"
+        >
+          Women Clothing
+        </p>
+        <p
+          class="mobile2"
+          :class="{ activetab1: isActiveMen }"
+          @click="activateMen()"
+        >
+          Mens Clothing
+        </p>
+        <p
+          class="mobile3"
+          :class="{ activetab2: isActivePhone }"
+          @click="activateMobile()"
+        >
+          Mobile
+        </p>
+        <p
+          class="mobile4"
+          :class="{ activetab3: isActiveComputer }"
+          @click="activateComputer()"
+        >
+          Computer
+        </p>
+        <p
+          class="mobile5"
+          :class="{ activetab4: isActiveSpeaker }"
+          @click="activateSpeakers()"
+        >
+          Speaker
+        </p>
       </div>
       <div class="second-grid">
         <div
@@ -192,7 +227,12 @@
               alt="product-image"
               class="product-image1"
             />
-            <img alt="heart" :src="details.heart[details.heartCurrent]" class="heart1" @click="changeheart2(index)" />
+            <img
+              alt="heart"
+              :src="details.heart[details.heartCurrent]"
+              class="heart1"
+              @click="changeheart2(index)"
+            />
           </div>
           <div class="second-div">
             <div class="star-div">
@@ -240,29 +280,15 @@
         <span v-if="secondNumber < 1000">See More</span>
         <span v-else>See Less</span>
       </button>
-      <div class="last-row">
-        <div class="last-item">
-          <img src="grid.svg" alt="add" class="nav" />
-          <p class="nav-txt">Explore</p>
-        </div>
-        <div class="last-item">
-          <img src="layers.svg" alt="add" class="nav" />
-          <p class="nav-txt">Categories</p>
-        </div>
-        <div class="last-item">
-          <img src="heart.svg" alt="add" class="nav" />
-          <p class="nav-txt">Wishlist</p>
-        </div>
-        <img src="profile.png" alt="profile-pic" class="profile" />
-      </div>
     </div>
+    <homeModal v-if="showModal" @closeModal="offModal()" />
   </div>
 </template>
   
   <script>
 export default {
   name: "home",
-  layout: "default",
+  layout: "navigation",
 
   computed: {
     itemsLessThanFour: function () {
@@ -282,6 +308,7 @@ export default {
 
   data() {
     return {
+      showModal: false,
       number: 4,
       secondNumber: 6,
       isActiveMobile: true,
@@ -293,7 +320,7 @@ export default {
       isActivePhone: false,
       isActiveComputer: false,
       isActiveSpeaker: false,
-      isActiveWomen : true,
+      isActiveWomen: true,
       dealings: [
         {
           index: 1,
@@ -713,6 +740,18 @@ export default {
   },
 
   methods: {
+    productDetails() {
+      this.$router.push("/productdetails");
+    },
+
+    offModal() {
+      this.showModal = false;
+    },
+
+    openModal() {
+      this.showModal = true;
+    },
+
     activateMen() {
       this.isActiveMen = true;
       this.isActivePhone = false;
@@ -744,7 +783,6 @@ export default {
       this.isActiveSpeaker = true;
       this.isActiveWomen = false;
     },
-  
 
     activateWomen() {
       this.isActiveMen = false;
@@ -765,7 +803,6 @@ export default {
         this.secondNumber = 6;
       }
     },
-
 
     activeClass() {
       this.isActiveMobile = true;
@@ -807,18 +844,18 @@ export default {
       this.isActiveSpeaker = true;
     },
 
-    changeheart1(index){
+    changeheart1(index) {
       if (this.packageDetails[index].heartCurrent < 1) {
         this.packageDetails[index].heartCurrent = 1;
-      } else  {
+      } else {
         this.packageDetails[index].heartCurrent = 0;
       }
     },
 
-    changeheart2(index){
+    changeheart2(index) {
       if (this.itemDetails[index].heartCurrent < 1) {
         this.itemDetails[index].heartCurrent = 1;
-      } else  {
+      } else {
         this.itemDetails[index].heartCurrent = 0;
       }
     },
@@ -894,7 +931,6 @@ export default {
         this.itemDetails[index].starCurrent1 = 0;
       }
     },
-
 
     changeStar2(index) {
       if (this.packageDetails[index].starCurrent2 < 1) {
@@ -1164,6 +1200,9 @@ export default {
   line-height: 18px;
   text-decoration-line: underline;
   color: #0ddf7a;
+  border: none;
+  background: none;
+  cursor: pointer;
 }
 
 .third-col {
@@ -1525,7 +1564,7 @@ export default {
   font-size: 16px;
   line-height: 19px;
   color: #a6a8ad;
-  margin: 0 16px 0 0;
+  margin: 0 0 0 0;
   padding-bottom: 12px;
   text-overflow: clip;
   cursor: pointer;
@@ -1543,11 +1582,11 @@ export default {
   display: grid;
   grid-template-columns: 211px 211px;
   background-color: #ffffff;
-  width: 100%;
+  width: 92%;
   justify-content: start;
   row-gap: 11px;
   column-gap: 6px;
-  margin: 15px 4% 0 4%;
+  margin: 15px auto 0 auto;
   white-space: nowrap;
   overflow: scroll;
 }
@@ -1955,47 +1994,5 @@ export default {
   padding: 6px 6px 6px 6px;
   border-radius: 50%;
   margin: 2px 0 0 131px;
-}
-
-.last-row {
-  height: 76px;
-  width: 100%;
-  max-width: 540px;
-  background: #ffffff;
-  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  position: fixed;
-  bottom: 0;
-  margin: 0 auto 0 auto;
-}
-
-.last-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.nav {
-  height: 18px;
-  width: 18px;
-  margin: 17px 0 0 0;
-}
-
-.profile {
-  height: 38px;
-  width: 38px;
-  margin: 22px 0 0 0;
-}
-
-.nav-txt {
-  font-family: "Proxima Nova";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 17px;
-  color: #819bb3;
-  margin: 12px 0 0 0;
 }
 </style>
