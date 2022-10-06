@@ -2,7 +2,7 @@
   <div class="full-screen">
     <div class="max-div">
       <div class="first-div">
-        <p class="wish-txt">My Wishlist</p>
+        <p class="wish-txt">My wishlist</p>
         <img src="share.svg" class="share" />
       </div>
       <div class="second-grid">
