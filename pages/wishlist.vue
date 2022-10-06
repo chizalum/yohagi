@@ -67,7 +67,7 @@
         </div>
       </div>
       <button class="btn">
-        <span class="add-txt">Add To Cart</span>
+        <span class="add-txt" @click="toCart">Add To Cart</span>
       </button>
     </div>
   </div>
@@ -122,6 +122,12 @@ export default {
         },
       ],
     };
+  },
+
+  methods: {
+   toCart(){
+    this.$router.push("/shoppingcart");
+   },
   },
 };
 </script>

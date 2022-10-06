@@ -2,7 +2,7 @@
   <div class="full-screen">
     <div class="last-row">
       <div class="last-item" @click="home">
-        <img src="grid.svg" alt="add" class="nav" />
+        <img :src="box[boxer]" alt="add" class="nav" />
         <nuxt-link to="home" class="nav-txt">Explore</nuxt-link>
       </div>
       <div class="last-item">
@@ -10,7 +10,11 @@
         <p class="nav-txt">Categories</p>
       </div>
       <div class="last-item" @click="wishlist">
-        <img :src="heart[number]" alt="add" class="nav" />
+        <img
+          :src="heart[number]"
+          alt="add"
+          class="nav"
+        />
         <nuxt-link to="wishlist" class="nav-txt">Wishlist</nuxt-link>
       </div>
       <img src="profile.png" alt="profile-pic" class="profile" />
@@ -24,24 +28,31 @@ export default {
 
   data() {
     return {
+      boxer: 0,
       number: 0,
-      heart: ["heart.svg", "green-heart.svg"],
-    }
+      heart: ["heart.svg", "activeHeart.svg"],
+      box: ["grid-down.svg", "grid.svg"],
+    };
   },
 
   methods: {
-  home(){
-    this.$router.push("/home");
-    this.number = 0;
+    home() {
+      this.$router.push("/home");
+      this.number = 0;
+      this.boxer = 1;
+      this.activeWish = false;
+      this.activeHome = true;
+    },
+
+    wishlist() {
+      this.$router.push("/wishlist");
+      this.number = 1;
+      this.boxer = 0;
+      this.activeWish = true;
+      this.activeHome = false;
+    },
   },
-
-  wishlist(){
-    this.$router.push("/wishlist");
-    this.number = 1;
-  }
-}
 };
-
 </script>
   
   <style scoped>
@@ -78,7 +89,7 @@ export default {
 .nav {
   height: 18px;
   width: 18px;
-  margin: 17px 0 0 0;
+  margin: 17px 0 12px 0;
 }
 
 .profile {
@@ -94,7 +105,7 @@ export default {
   font-size: 14px;
   line-height: 17px;
   color: #819bb3;
-  margin: 12px 0 0 0;
+  margin: 0 0 0 0;
   text-decoration: none;
 }
 
@@ -105,4 +116,5 @@ a.nuxt-link-exact-active {
   font-size: 14px;
   color: #06d6a0;
 }
+
 </style>
