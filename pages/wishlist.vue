@@ -66,8 +66,8 @@
           <img :src="details.plus" alt="add" class="plus" />
         </div>
       </div>
-      <button class="btn">
-        <span class="add-txt" @click="toCart">Add To Cart</span>
+      <button class="btn" @click="toCart()">
+        <span class="add-txt">Add To Cart</span>
       </button>
     </div>
   </div>

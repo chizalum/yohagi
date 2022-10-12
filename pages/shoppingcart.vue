@@ -42,7 +42,7 @@
           <p class="total-txt">TOTAL:</p>
           <p class="numb">N250,000</p>
         </div>
-        <button class="btn">Check Out</button>
+        <button class="btn" @click="checkOut">Check Out</button>
       </div>
     </div>
   </div>
@@ -123,9 +123,13 @@ export default {
   },
 
   methods: {
-   toWish(){
-    this.$router.push("/wishlist");
-   },
+    toWish() {
+      this.$router.push("/wishlist");
+    },
+
+    checkOut() {
+      this.$router.push("/checkout");
+    },
 
     remove(index) {
       this.packageDetails.splice(index, 1);
@@ -154,13 +158,10 @@ export default {
 </script>
 
 <style scoped>
-.body,
-html {
-  background: #fbfcfe;
-}
 .full-screen {
   width: 100%;
   height: 100%;
+  min-height: 100vh;
   margin: 0 0 0 0;
   background: #fbfcfe;
 }

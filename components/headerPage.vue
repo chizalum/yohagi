@@ -5,7 +5,7 @@
         <img :src="box[boxer]" alt="add" class="nav" />
         <nuxt-link to="home" class="nav-txt">Explore</nuxt-link>
       </div>
-      <div class="last-item">
+      <div class="last-item" @click="categories">
         <img src="layers.svg" alt="add" class="nav" />
         <p class="nav-txt">Categories</p>
       </div>
@@ -40,6 +40,7 @@ export default {
       this.$router.push("/home");
       this.number = 0;
       this.boxer = 1;
+      this.categories = 0;
       this.activeWish = false;
       this.activeHome = true;
     },
@@ -48,8 +49,13 @@ export default {
       this.$router.push("/wishlist");
       this.number = 1;
       this.boxer = 0;
+      this.categories = 0;
       this.activeWish = true;
       this.activeHome = false;
+    },
+
+    categories() {
+      this.$router.push("/productdetails");
     },
   },
 };
