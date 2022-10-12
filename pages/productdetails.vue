@@ -189,7 +189,7 @@
       </div>
       <div v-else class="tenth-div">
         <div class="btn-flex">
-          <button class="button">VIEW CART</button>
+          <button class="button" @click="toCart">VIEW CART</button>
           <div class="heart-container" @click="changeColor">
             <img class="white-heart" :src="heart[heartCount]" />
           </div>
@@ -275,6 +275,10 @@ export default {
   methods: {
    home(){
     this.$router.push("/home");
+   },
+
+   toCart(){
+    this.$router.push("/shoppingcart");
    },
 
     changeIf() {
