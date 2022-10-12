@@ -29,7 +29,7 @@
         </div>
         <div class="fifth-row">
           <p class="get-txt">Get 50% Off</p>
-          <p class="shop-txt">SHOP WISE WITH PRICE COMPARISONS</p>
+          <p class="shop-txt">SHOP WISE WITH PRICE COMPARISON</p>
           <div class="sixth-row">
             <button class="view-box" @click="productDetails">
               <p class="view-txt">VIEW COLLECTION</p>
