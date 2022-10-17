@@ -330,7 +330,7 @@ export default {
 }
 
 .fifth-div {
-  position: absolute;
+  position: fixed;
   max-width: 540px;
   margin: auto auto 0 auto;
   bottom: 0;
@@ -338,6 +338,8 @@ export default {
   right: 0;
   width: 100%;
   background: #ffffff;
+  display: flex;
+  flex-direction: column;
 }
 
 .sixth-div {

@@ -40,8 +40,18 @@
           </div>
         </div>
         <div class="seventh-row">
-          <img src="watch.png" class="watch" alt="watch-img" @click="productDetails" />
-          <img src="sweater.png" class="sweater" alt="sweater-img" @click="productDetails" />
+          <img
+            src="watch.png"
+            class="watch"
+            alt="watch-img"
+            @click="productDetails"
+          />
+          <img
+            src="sweater.png"
+            class="sweater"
+            alt="sweater-img"
+            @click="productDetails"
+          />
         </div>
         <div class="top-div">
           <p class="top-txt">Top Categories This Week</p>
@@ -160,7 +170,12 @@
           <button class="btn-3" @click="productDetails">Go Shop</button>
         </div>
         <div class="ninth-div">
-          <div class="deals" v-for="(deals, index) in dealings" :key="index" @click="productDetails">
+          <div
+            class="deals"
+            v-for="(deals, index) in dealings"
+            :key="index"
+            @click="productDetails"
+          >
             <div class="circle-div">
               <p class="offer-txt">{{ deals.offer }}</p>
               <p class="span1">offer</p>
@@ -291,6 +306,7 @@ export default {
   layout: "navigation",
 
   computed: {
+
     itemsLessThanFour: function () {
       const app = this;
       return this.packageDetails.filter(function (details) {
